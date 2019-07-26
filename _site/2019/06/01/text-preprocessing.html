@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Do we need to preprocess the text? - Deep Blog
+    
+  </title>
+
+  <meta name="description" content="Text Preprocessing">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/deep_learner_journal/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/deep_learner_journal/assets/vendor/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="/deep_learner_journal/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/deep_learner_journal/2019/06/01/text-preprocessing.html">
+  <link rel="alternate" type="application/rss+xml" title="Deep Blog" href="/deep_learner_journal/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/deep_learner_journal/">Deep Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/deep_learner_journal/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/deep_learner_journal/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/deep_learner_journal/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/deep_learner_journal/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/deep_learner_journal/img/posts/ph_text.jpg')">
+  
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Do we need to preprocess the text?</h1>
+            
+            <h2 class="subheading">The First Step before any text analyses</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">Khaing Win</a>
+              on June 01, 2019 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <h1>Text Preprocessing</h1>
+
+<p>Ok, you might be thinking about the  <code>'text&#39;</code> messages on your smart phone. You're absoulely right. It's defintely a form of text. There are other forms of text, such as tweets, email messages, documents being collected from the internet and so on - anything that has to do with human languages. </p>
+
+<img class="img-fluid" src="https://source.unsplash.com/3Mhgvrk4tjM" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/3Mhgvrk4tjM">Unsplash</a>.</p></span>
+
+
+ <p>There are various meaningful analyses we can use to extract information from these text, ie. tagging whether an email message is spam or ham (not spam), or counting the number of frequent words. Before we do any analyses, we have to preprocess the text. 
+</p>
+
+<h2>BUT WHY? </h2>
+
+<h3>Why do we need to preprocess the text?</h3>
+
+<blockquote>
+<p>Why can't we feed the text directly into the model?</p></blockquote>
+
+<p>Well let's think about how the text data is usually collected. </p>
+
+<h2 class="section-heading">Sources of text</h2>
+
+<p>Websites is one of the most common places to obtain text data. When handling the text data from the website, we have to be aware of the corresponding html markup, that serves as the raw input of data. </p>
+We want to get rid of these html tags, along with url and other information that are not relavant to the purpose of the analyses, and retain a plain text.
+
+
+<img class="img-fluid" src="https://source.unsplash.com/8OyKWQgBsKQ" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/8OyKWQgBsKQ">Unsplash</a>.</p></span>
+
+
+There are other sources where we can obtain the text data from and can come in various formats. These  includes newspaper articles, pdf, word documents, scanned documents, and raw files from speech recognition system.
+
+
+<img class="img-fluid" src="https://source.unsplash.com/otyL8Sl2ppg" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/otyL8Sl2ppg">Unsplash</a>.</p></span>
+
+After isolating the plain text from all the other irrelevant information, we may need to follow additional processing steps. (I know right, more preprocessing!) 
+But don't worry, these additional steps are more intuitive. 
+
+We should ask ourselves the following: 
+
+<blockquote>
+<p><strong>" Does it change the meaning of a word or a sentence if we preprocess it? "</strong></p>
+</blockquote>
+
+<p>We can change the capitalized letter to the small letter since the capitalization doesn't usually change the meaning of a sentence. (Apple vs. apple)</p>
+
+<p>What about punctuation marks to indicate pauses?  </p>
+
+<p>What about commonly used words (ie. `the`, `a`, `an`, `of`)? They provide structures when we are creating sentences but do not assist much in the meaning of sentences.  </p>
+
+These can all be removed from our plain text. 
+
+We will explore more about these specific processing steps in the next post. So stay tuned!
+
+
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          
+          <a class="btn btn-primary float-right" href="/deep_learner_journal/2019/06/17/sentiment.html" data-toggle="tooltip" data-placement="top" title="Sentiment Analysis?">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:khai.win2018@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/KhaiWin3">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/winkhai.github.io">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/khaing-win-11395344/">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/winkhai">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Khaing Win 2019</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="/deep_learner_journal/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/deep_learner_journal/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/deep_learner_journal/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/deep_learner_journal/assets/scripts.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-XXXXXXXXX-X');
+</script>
+
+
+
+</body>
+
+</html>

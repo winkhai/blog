@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/deep_learner_journal/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/deep_learner_journal/" rel="alternate" type="text/html" /><updated>2019-07-26T16:17:29-04:00</updated><id>http://localhost:4000/deep_learner_journal/feed.xml</id><title type="html">Deep Blog</title><subtitle>curious about AI techniques &amp; enjoy applying them</subtitle><author><name>Khaing Win</name></author><entry><title type="html">Sentiment Analysis?</title><link href="http://localhost:4000/deep_learner_journal/2019/06/17/sentiment.html" rel="alternate" type="text/html" title="Sentiment Analysis?" /><published>2019-06-17T00:00:00-04:00</published><updated>2019-06-17T00:00:00-04:00</updated><id>http://localhost:4000/deep_learner_journal/2019/06/17/sentiment</id><content type="html" xml:base="http://localhost:4000/deep_learner_journal/2019/06/17/sentiment.html">&lt;h1&gt;Project overview&lt;/h1&gt;
+
+&lt;p&gt;In this project, I constructed a recurrent neural network (RNN) for the purpose of determining the sentiment of a review using the IMDB movie dataset. The model was created using &lt;code&gt;Amazon&amp;#39;s SageMaker&lt;/code&gt; service. This model is then deployed and a simple web app is created which then interacts with the deployed model. Although the model was trained on movie reviews, the testing worked well on any kind of reviews.&lt;/p&gt;
+
+&lt;h2&gt;Project Rationale:&lt;/h2&gt;
+
+&lt;h3&gt;Why use a RNN? Why not a typical feedforward neural network?&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Human language is composed of &lt;em&gt;sequence&lt;/em&gt; of words, and the next word depends on the previous words in a sentence. When dealing with sequential information, RNN is more accurate.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2 class=&quot;section-heading&quot;&gt;Understanding of Human Language&lt;/h2&gt;
+
+&lt;p&gt;How would the machine learning algorithm understand english language? or any other language?&lt;/p&gt;
+
+&lt;img class=&quot;img-fluid&quot; src=&quot;https://source.unsplash.com/MK4QKBqG_lA&quot; alt=&quot;Demo Image&quot;&gt;
+&lt;span class=&quot;caption text-muted&quot;&gt;Photographs by &lt;a href=&quot;https://unsplash.com/photos/MK4QKBqG_lA&quot;&gt;Unsplash&lt;/a&gt;.&lt;/p&gt;&lt;/span&gt;
+
+&lt;p&gt;We have to somehow find a way to turn the language into numerical representations.&lt;/p&gt;
+
+
+
+&lt;p&gt;Here, I used a dataset of movie reviews, accompanied by sentiment labels, whether the review is positive or negative.&lt;/p&gt;
+
+
+&lt;h2&gt;High-level approach&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;First, we&amp;#39;ll pass in words (which are our inputs) to an embedding layer.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Word embeddings work better than one-hot encoding since it&amp;#39;s more efficient. Think about it: we have tens of thousands of words, we&amp;#39;ll need a more efficient representation for our input data. That&amp;#39;s why we need an embedding layer than one-hot encoded vectors.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We can actually train an embedding with the &lt;code&gt;Skip-gram Word2Vec model&lt;/code&gt; and use those embeddings as input. However, we are just going to use an embedding layer and let our network learn a different embedding table on its own. &lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;In this case, the embedding layer is for the purpose of dimensionality reduction, rather than for learning semantic representations.&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;After input words are passed to an embedding layer, the new embeddings will be passed to LSTM cells.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The LSTM cells will add &lt;em&gt;recurrent&lt;/em&gt; connections to the network.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This will give us the ability to include information about the &lt;em&gt;sequence&lt;/em&gt; of words in the movie review data.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Finally, the LSTM outputs will go to a sigmoid output layer.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Positive review is labeled as &lt;code&gt;1&lt;/code&gt; and negative review is labeled as &lt;code&gt;0&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;A sigmoid function will output predicted, sentiment values between &lt;code&gt;0&lt;/code&gt;-&lt;code&gt;1&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/br&gt;
+&lt;/br&gt;
+
+
+&lt;p&gt; Check out your sentiment on a review in my next post.&lt;/p&gt;
+
+[SENTIMENT](sentiment-deploy.html)</content><author><name>Khaing Win</name></author><summary type="html">Project overview</summary></entry><entry><title type="html">What’s your sentiment?</title><link href="http://localhost:4000/deep_learner_journal/2019/06/17/sentiment-RNN-deploy.html" rel="alternate" type="text/html" title="What's your sentiment?" /><published>2019-06-17T00:00:00-04:00</published><updated>2019-06-17T00:00:00-04:00</updated><id>http://localhost:4000/deep_learner_journal/2019/06/17/sentiment-RNN-deploy</id><content type="html" xml:base="http://localhost:4000/deep_learner_journal/2019/06/17/sentiment-RNN-deploy.html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;title&gt;Sentiment Analysis Web App&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot;  content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt;
+        &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+
+        &lt;script&gt;
+         &quot;use strict&quot;;
+         function submitForm(oFormElement) {
+             var xhr = new XMLHttpRequest();
+             xhr.onload = function() {
+                 var result = parseFloat(xhr.responseText);
+                 var resultElement = document.getElementById('result');
+                 if (!result) {
+                     resultElement.className = 'bg-danger';
+                     resultElement.innerHTML = 'Your review was NEGATIVE!';
+                 } else {
+                     resultElement.className = 'bg-success';
+                     resultElement.innerHTML = 'Your review was POSITIVE!';
+                 }
+             }
+             xhr.open (oFormElement.method, oFormElement.action, true);
+             var review = document.getElementById('review');
+             xhr.send (review.value);
+             return false;
+         }
+        &lt;/script&gt;
+
+    &lt;/head&gt;
+    &lt;body&gt;
+
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;h1&gt;&lt;font color = &quot;ab07a3&quot;&gt;Sentiment Analysis (for movie review) using Recurrent Neural Network&lt;/font&gt;&lt;/h1&gt;
+            &lt;h6&gt;&lt;font color = &quot;5107f0&quot;&gt;This project used IMDB dataset. The model is currently deployed on AWS. &lt;/font&gt;&lt;/h6&gt;
+            &lt;h3&gt;&lt;font color = &quot;14a7b8&quot;&gt;Is your review positive, or negative?&lt;/font&gt;&lt;/h3&gt;
+            &lt;p&gt;&lt;font color = &quot;de921e &quot;&gt;Enter your review below and click submit to find out...&lt;/font&gt;&lt;/p&gt;
+            &lt;form method=&quot;POST&quot;
+                  action=&quot; https://rjhqj2qdua.execute-api.us-east-1.amazonaws.com/prod_deploy&quot;
+                  onsubmit=&quot;return submitForm(this);&quot; &gt;                     &lt;!-- HERE IS WHERE YOU NEED TO ENTER THE API URL --&gt;
+                &lt;div class=&quot;form-group&quot;&gt;
+                    &lt;label for=&quot;review&quot;&gt;Review:&lt;/label&gt;
+                    &lt;textarea class=&quot;form-control&quot;  rows=&quot;5&quot; id=&quot;review&quot;&gt;Please write your review in the box here.&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;
+            &lt;h1 class=&quot;bg-success&quot; id=&quot;result&quot;&gt;&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</content><author><name>Khaing Win</name></author><summary type="html">Sentiment Analysis Web App</summary></entry><entry><title type="html">Do we need to preprocess the text?</title><link href="http://localhost:4000/deep_learner_journal/2019/06/01/text-preprocessing.html" rel="alternate" type="text/html" title="Do we need to preprocess the text?" /><published>2019-06-01T00:00:00-04:00</published><updated>2019-06-01T00:00:00-04:00</updated><id>http://localhost:4000/deep_learner_journal/2019/06/01/text-preprocessing</id><content type="html" xml:base="http://localhost:4000/deep_learner_journal/2019/06/01/text-preprocessing.html">&lt;h1&gt;Text Preprocessing&lt;/h1&gt;
+
+&lt;p&gt;Ok, you might be thinking about the  &lt;code&gt;'text&amp;#39;&lt;/code&gt; messages on your smart phone. You're absoulely right. It's defintely a form of text. There are other forms of text, such as tweets, email messages, documents being collected from the internet and so on - anything that has to do with human languages. &lt;/p&gt;
+
+&lt;img class=&quot;img-fluid&quot; src=&quot;https://source.unsplash.com/3Mhgvrk4tjM&quot; alt=&quot;Demo Image&quot;&gt;
+&lt;span class=&quot;caption text-muted&quot;&gt;Photographs by &lt;a href=&quot;https://unsplash.com/photos/3Mhgvrk4tjM&quot;&gt;Unsplash&lt;/a&gt;.&lt;/p&gt;&lt;/span&gt;
+
+
+ &lt;p&gt;There are various meaningful analyses we can use to extract information from these text, ie. tagging whether an email message is spam or ham (not spam), or counting the number of frequent words. Before we do any analyses, we have to preprocess the text. 
+&lt;/p&gt;
+
+&lt;h2&gt;BUT WHY? &lt;/h2&gt;
+
+&lt;h3&gt;Why do we need to preprocess the text?&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Why can't we feed the text directly into the model?&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Well let's think about how the text data is usually collected. &lt;/p&gt;
+
+&lt;h2 class=&quot;section-heading&quot;&gt;Sources of text&lt;/h2&gt;
+
+&lt;p&gt;Websites is one of the most common places to obtain text data. When handling the text data from the website, we have to be aware of the corresponding html markup, that serves as the raw input of data. &lt;/p&gt;
+We want to get rid of these html tags, along with url and other information that are not relavant to the purpose of the analyses, and retain a plain text.
+
+
+&lt;img class=&quot;img-fluid&quot; src=&quot;https://source.unsplash.com/8OyKWQgBsKQ&quot; alt=&quot;Demo Image&quot;&gt;
+&lt;span class=&quot;caption text-muted&quot;&gt;Photographs by &lt;a href=&quot;https://unsplash.com/photos/8OyKWQgBsKQ&quot;&gt;Unsplash&lt;/a&gt;.&lt;/p&gt;&lt;/span&gt;
+
+
+There are other sources where we can obtain the text data from and can come in various formats. These  includes newspaper articles, pdf, word documents, scanned documents, and raw files from speech recognition system.
+
+
+&lt;img class=&quot;img-fluid&quot; src=&quot;https://source.unsplash.com/otyL8Sl2ppg&quot; alt=&quot;Demo Image&quot;&gt;
+&lt;span class=&quot;caption text-muted&quot;&gt;Photographs by &lt;a href=&quot;https://unsplash.com/photos/otyL8Sl2ppg&quot;&gt;Unsplash&lt;/a&gt;.&lt;/p&gt;&lt;/span&gt;
+
+After isolating the plain text from all the other irrelevant information, we may need to follow additional processing steps. (I know right, more preprocessing!) 
+But don't worry, these additional steps are more intuitive. 
+
+We should ask ourselves the following: 
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&quot; Does it change the meaning of a word or a sentence if we preprocess it? &quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We can change the capitalized letter to the small letter since the capitalization doesn't usually change the meaning of a sentence. (Apple vs. apple)&lt;/p&gt;
+
+&lt;p&gt;What about punctuation marks to indicate pauses?  &lt;/p&gt;
+
+&lt;p&gt;What about commonly used words (ie. `the`, `a`, `an`, `of`)? They provide structures when we are creating sentences but do not assist much in the meaning of sentences.  &lt;/p&gt;
+
+These can all be removed from our plain text. 
+
+We will explore more about these specific processing steps in the next post. So stay tuned!</content><author><name>Khaing Win</name></author><summary type="html">Text Preprocessing</summary></entry></feed>

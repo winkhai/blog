@@ -1,0 +1,24 @@
+title:              Deep Blog
+email:              khai.win2018@gmail.com
+description:        curious about AI techniques & enjoy applying them
+author:             Khaing Win
+baseurl:            "/deep_learner_journal"
+url:                "https://winkhai.github.io"
+
+# Social Profiles
+twitter_username:   KhaiWin3
+github_username:    winkhai
+facebook_username:  winkhai.github.io
+linkedin_username:  khaing-win-11395344/
+
+# Add your google-analytics ID here to activate google analytics
+google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site

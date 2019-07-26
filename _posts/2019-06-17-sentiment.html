@@ -1,0 +1,71 @@
+---
+layout: post
+title: "Sentiment Analysis?"
+subtitle: "Using Recurrent Neural Network"
+date: 2019-06-17 
+background: '/img/posts/reviews_ex.png'
+author: "Khaing Win"
+---
+<h1>Project overview</h1>
+
+<p>In this project, I constructed a recurrent neural network (RNN) for the purpose of determining the sentiment of a review using the IMDB movie dataset. The model was created using <code>Amazon&#39;s SageMaker</code> service. This model is then deployed and a simple web app is created which then interacts with the deployed model. Although the model was trained on movie reviews, the testing worked well on any kind of reviews.</p>
+
+<h2>Project Rationale:</h2>
+
+<h3>Why use a RNN? Why not a typical feedforward neural network?</h3>
+
+<blockquote>
+<p>Human language is composed of <em>sequence</em> of words, and the next word depends on the previous words in a sentence. When dealing with sequential information, RNN is more accurate.</p></blockquote>
+
+<h2 class="section-heading">Understanding of Human Language</h2>
+
+<p>How would the machine learning algorithm understand english language? or any other language?</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/MK4QKBqG_lA" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/MK4QKBqG_lA">Unsplash</a>.</p></span>
+
+<p>We have to somehow find a way to turn the language into numerical representations.</p>
+
+
+
+<p>Here, I used a dataset of movie reviews, accompanied by sentiment labels, whether the review is positive or negative.</p>
+
+
+<h2>High-level approach</h2>
+
+<blockquote>
+<p><strong><em>First, we&#39;ll pass in words (which are our inputs) to an embedding layer.</em></strong></p>
+</blockquote>
+
+<ul>
+<li><p>Word embeddings work better than one-hot encoding since it&#39;s more efficient. Think about it: we have tens of thousands of words, we&#39;ll need a more efficient representation for our input data. That&#39;s why we need an embedding layer than one-hot encoded vectors.</p></li>
+<li><p>We can actually train an embedding with the <code>Skip-gram Word2Vec model</code> and use those embeddings as input. However, we are just going to use an embedding layer and let our network learn a different embedding table on its own. </p></li>
+</ul>
+
+<p><em>In this case, the embedding layer is for the purpose of dimensionality reduction, rather than for learning semantic representations.</em></p>
+
+<blockquote>
+<p><strong>After input words are passed to an embedding layer, the new embeddings will be passed to LSTM cells.</strong></p>
+</blockquote>
+
+<ul>
+<li><p>The LSTM cells will add <em>recurrent</em> connections to the network.</p></li>
+<li><p>This will give us the ability to include information about the <em>sequence</em> of words in the movie review data.</p></li>
+</ul>
+
+<blockquote>
+<p><strong>Finally, the LSTM outputs will go to a sigmoid output layer.</strong></p>
+</blockquote>
+
+<ul>
+<li>Positive review is labeled as <code>1</code> and negative review is labeled as <code>0</code>.</li>
+<li>A sigmoid function will output predicted, sentiment values between <code>0</code>-<code>1</code>.</li>
+</ul>
+
+</br>
+</br>
+
+
+<p> Check out your sentiment on a review in my next post.</p>
+
+[SENTIMENT](sentiment-deploy.html)

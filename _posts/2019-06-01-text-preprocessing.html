@@ -1,0 +1,64 @@
+---
+layout: post
+title: "Do we need to preprocess the text?"
+subtitle: "The First Step before any text analyses"
+date: 2019-06-01 
+background: '/img/posts/ph_text.jpg'
+author: "Khaing Win"
+---
+<h1>Text Preprocessing</h1>
+
+<p>Ok, you might be thinking about the  <code>'text&#39;</code> messages on your smart phone. You're absoulely right. It's defintely a form of text. There are other forms of text, such as tweets, email messages, documents being collected from the internet and so on - anything that has to do with human languages. </p>
+
+<img class="img-fluid" src="https://source.unsplash.com/3Mhgvrk4tjM" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/3Mhgvrk4tjM">Unsplash</a>.</p></span>
+
+
+ <p>There are various meaningful analyses we can use to extract information from these text, ie. tagging whether an email message is spam or ham (not spam), or counting the number of frequent words. Before we do any analyses, we have to preprocess the text. 
+</p>
+
+<h2>BUT WHY? </h2>
+
+<h3>Why do we need to preprocess the text?</h3>
+
+<blockquote>
+<p>Why can't we feed the text directly into the model?</p></blockquote>
+
+<p>Well let's think about how the text data is usually collected. </p>
+
+<h2 class="section-heading">Sources of text</h2>
+
+<p>Websites is one of the most common places to obtain text data. When handling the text data from the website, we have to be aware of the corresponding html markup, that serves as the raw input of data. </p>
+We want to get rid of these html tags, along with url and other information that are not relavant to the purpose of the analyses, and retain a plain text.
+
+
+<img class="img-fluid" src="https://source.unsplash.com/8OyKWQgBsKQ" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/8OyKWQgBsKQ">Unsplash</a>.</p></span>
+
+
+There are other sources where we can obtain the text data from and can come in various formats. These  includes newspaper articles, pdf, word documents, scanned documents, and raw files from speech recognition system.
+
+
+<img class="img-fluid" src="https://source.unsplash.com/otyL8Sl2ppg" alt="Demo Image">
+<span class="caption text-muted">Photographs by <a href="https://unsplash.com/photos/otyL8Sl2ppg">Unsplash</a>.</p></span>
+
+After isolating the plain text from all the other irrelevant information, we may need to follow additional processing steps. (I know right, more preprocessing!) 
+But don't worry, these additional steps are more intuitive. 
+
+We should ask ourselves the following: 
+
+<blockquote>
+<p><strong>" Does it change the meaning of a word or a sentence if we preprocess it? "</strong></p>
+</blockquote>
+
+<p>We can change the capitalized letter to the small letter since the capitalization doesn't usually change the meaning of a sentence. (Apple vs. apple)</p>
+
+<p>What about punctuation marks to indicate pauses?  </p>
+
+<p>What about commonly used words (ie. `the`, `a`, `an`, `of`)? They provide structures when we are creating sentences but do not assist much in the meaning of sentences.  </p>
+
+These can all be removed from our plain text. 
+
+We will explore more about these specific processing steps in the next post. So stay tuned!
+
+
